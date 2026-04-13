@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRI-CD — Cercle de Réflexion pour l'Instruction, la Culture et le Développement Durable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    :root {
+      --noir:      #111111;
+      --noir2:     #1C1C1C;
+      --blanc:     #FFFFFF;
+      --gris-lt:   #F4F4F2;
+      --gris-md:   #767676;
+      --gris-bord: #E0E0DC;
+      /* Couleurs logo CRI-CD */
+      --bleu:      #1A6FC4;
+      --rouge:     #C8001A;
+      --vert:      #0D6B33;
+      --jaune:     #F5C800;
+      --font-titre: 'Raleway', sans-serif;
+      --font-corps: 'Open Sans', sans-serif;
+    }
+
+    body { font-family: var(--font-corps); background:#fff; color:var(--noir); overflow-x:hidden; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--noir);
+      padding: 7px 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar-left { display:flex; gap:1.5rem; align-items:center; }
+    .topbar-item { font-size:12px; color:rgba(255,255,255,0.7); display:flex; align-items:center; gap:5px; }
+    .topbar-item a { color:rgba(255,255,255,0.7); text-decoration:none; }
+    .topbar-item a:hover { color:#fff; }
+    .topbar-right { font-size:11.5px; color:rgba(255,255,255,0.45); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: #fff;
+      border-bottom: 1px solid var(--gris-bord);
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    }
+
+    .nav-brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
+
+    .nav-logo-svg { width:50px; height:50px; flex-shrink:0; }
+
+    .nav-wordmark { line-height:1.2; }
+    .nav-wordmark strong {
+      display:block;
+      font-family: var(--font-titre);
+      font-size:17px;
+      font-weight:800;
+      color:var(--noir);
+      letter-spacing:0.5px;
+    }
+    .nav-wordmark span {
+      font-size:10.5px;
+      color:var(--gris-md);
+      font-weight:400;
+    }
+
+    .nav-menu { display:flex; list-style:none; gap:0; align-items:center; }
+    .nav-menu a {
+      display:block;
+      padding:0 1.1rem;
+      line-height:70px;
+      font-size:13.5px;
+      font-weight:600;
+      color:var(--noir);
+      text-decoration:none;
+      border-bottom:3px solid transparent;
+      transition:all .2s;
+      font-family:var(--font-titre);
+      letter-spacing:0.3px;
+    }
+    .nav-menu a:hover { color:var(--bleu); border-bottom-color:var(--bleu); }
+
+    .nav-adherer {
+      background:var(--bleu);
+      color:#fff;
+      padding:10px 22px;
+      font-family:var(--font-titre);
+      font-size:13px;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-block;
+      transition:background .2s;
+      letter-spacing:0.5px;
+    }
+    .nav-adherer:hover { background:#1558a0; }
+
+    /* ── HERO FULLSCREEN ── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=1600&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.55);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85) 0%,
+        rgba(0,0,0,0.3) 50%,
+        rgba(0,0,0,0.1) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 2.5rem 4rem;
+      max-width: 800px;
+    }
+
+    .hero-tag {
+      display:inline-block;
+      background:var(--bleu);
+      color:#fff;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      padding:5px 14px;
+      margin-bottom:1.4rem;
+      font-family:var(--font-titre);
+    }
+
+    .hero-content h1 {
+      font-family:var(--font-titre);
+      font-size:clamp(2.4rem, 5vw, 4.5rem);
+      font-weight:800;
+      color:#fff;
+      line-height:1.08;
+      letter-spacing:-0.5px;
+      margin-bottom:1.2rem;
+    }
+
+    .hero-content p {
+      font-size:17px;
+      color:rgba(255,255,255,0.82);
+      line-height:1.7;
+      max-width:580px;
+      margin-bottom:2rem;
+      font-weight:300;
+    }
+
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+
+    .btn-blanc {
+      background:#fff;
+      color:var(--noir);
+      padding:13px 30px;
+      font-family:var(--font-titre);
+      font-size:14px;
+      font-weight:700;
+      text-decoration:none;
+      display:inline-block;
+      border:none;
+      cursor:pointer;
+      transition:all .2s;
+      letter-spacing:0.3px;
+    }
+    .btn-blanc:hover { background:var(--gris-lt); }
+
+    .btn-contour-blanc {
+      background:transparent;
+      color:#fff;
+      padding:12px 30px;
+      font-family:var(--font-titre);
+      font-size:14px;
+      font-weight:600;
+      text-decoration:none;
+      display:inline-block;
+      border:2px solid rgba(255,255,255,0.6);
+      cursor:pointer;
+      transition:all .2s;
+    }
+    .btn-contour-blanc:hover { border-color:#fff; background:rgba(255,255,255,0.08); }
+
+    /* ── BANDEAU STATS ── */
+    .stats-band {
+      background:var(--bleu);
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+    }
+    .sband {
+      padding:1.6rem 1rem;
+      text-align:center;
+      border-right:1px solid rgba(255,255,255,0.18);
+    }
+    .sband:last-child { border-right:none; }
+    .sband-n {
+      font-family:var(--font-titre);
+      font-size:2.2rem;
+      font-weight:800;
+      color:#fff;
+      line-height:1;
+    }
+    .sband-l { font-size:12px; color:rgba(255,255,255,0.75); margin-top:4px; }
+
+    /* ── SECTIONS GÉNÉRALES ── */
+    section { padding:5.5rem 2.5rem; }
+    .container { max-width:1140px; margin:0 auto; }
+
+    .s-kicker {
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:2.5px;
+      text-transform:uppercase;
+      color:var(--bleu);
+      margin-bottom:0.8rem;
+      font-family:var(--font-titre);
+    }
+
+    h2 {
+      font-family:var(--font-titre);
+      font-size:clamp(1.8rem, 3vw, 2.8rem);
+      font-weight:800;
+      line-height:1.12;
+      letter-spacing:-0.3px;
+      color:var(--noir);
+      margin-bottom:1rem;
+    }
+
+    .h-trait {
+      width:44px;
+      height:3px;
+      background:var(--bleu);
+      margin-bottom:1.5rem;
+    }
+
+    /* ── MISSION : 2 colonnes ── */
+    .mission { background:var(--gris-lt); }
+    .mission-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:5rem;
+      align-items:center;
+    }
+    .mission-text p {
+      font-size:15.5px;
+      color:#444;
+      line-height:1.85;
+      margin-bottom:1.2rem;
+    }
+    .mission-img {
+      border-radius:4px;
+      overflow:hidden;
+      position:relative;
+      aspect-ratio:4/3;
+    }
+    .mission-img img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .5s ease;
+    }
+    .mission-img:hover img { transform:scale(1.04); }
+    .mission-img-badge {
+      position:absolute;
+      bottom:1.2rem;
+      left:1.2rem;
+      background:var(--bleu);
+      color:#fff;
+      font-size:12px;
+      font-weight:700;
+      padding:6px 14px;
+      font-family:var(--font-titre);
+      letter-spacing:0.5px;
+    }
+
+    .btn-bleu {
+      background:var(--bleu);
+      color:#fff;
+      padding:12px 28px;
+      font-family:var(--font-titre);
+      font-size:14px;
+      font-weight:700;
+      text-decoration:none;
+      display:inline-block;
+      border:none;
+      cursor:pointer;
+      transition:background .2s;
+      letter-spacing:0.3px;
+      margin-top:0.5rem;
+    }
+    .btn-bleu:hover { background:#1558a0; }
+
+    .btn-contour-bleu {
+      background:transparent;
+      color:var(--bleu);
+      padding:11px 28px;
+      font-family:var(--font-titre);
+      font-size:14px;
+      font-weight:700;
+      text-decoration:none;
+      display:inline-block;
+      border:2px solid var(--bleu);
+      cursor:pointer;
+      transition:all .2s;
+      margin-top:0.5rem;
+    }
+    .btn-contour-bleu:hover { background:var(--bleu); color:#fff; }
+
+    /* ── DOMAINES : grille photos comme CARE ── */
+    .domaines { background:#fff; }
+
+    .domaines-header {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:3rem;
+      align-items:end;
+      margin-bottom:3rem;
+    }
+
+    .domaines-header p {
+      font-size:15.5px;
+      color:#555;
+      line-height:1.8;
+    }
+
+    .domaines-grid {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:1.5rem;
+    }
+
+    .dom-card {
+      position:relative;
+      border-radius:4px;
+      overflow:hidden;
+      aspect-ratio:3/4;
+      cursor:default;
+    }
+
+    .dom-card img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .5s ease;
+    }
+
+    .dom-card:hover img { transform:scale(1.06); }
+
+    .dom-card-overlay {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+      transition:background .3s;
+    }
+
+    .dom-card:hover .dom-card-overlay {
+      background:linear-gradient(to top, rgba(26,111,196,0.88) 0%, rgba(26,111,196,0.25) 60%, transparent 100%);
+    }
+
+    .dom-card-body {
+      position:absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      padding:1.4rem 1.2rem;
+    }
+
+    .dom-card-num {
+      font-family:var(--font-titre);
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:2px;
+      color:rgba(255,255,255,0.6);
+      margin-bottom:4px;
+    }
+
+    .dom-card h3 {
+      font-family:var(--font-titre);
+      font-size:15px;
+      font-weight:800;
+      color:#fff;
+      margin-bottom:4px;
+      line-height:1.2;
+    }
+
+    .dom-card p {
+      font-size:12.5px;
+      color:rgba(255,255,255,0.75);
+      line-height:1.5;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .3s ease, opacity .3s;
+      opacity:0;
+    }
+
+    .dom-card:hover p { max-height:80px; opacity:1; }
+
+    /* ── IMPACT : chiffres comme CARE ── */
+    .impact { background:var(--noir); }
+    .impact h2 { color:#fff; }
+    .impact .s-kicker { color:var(--jaune); }
+    .impact .h-trait { background:var(--jaune); }
+
+    .impact-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:5rem;
+      align-items:center;
+      margin-top:3rem;
+    }
+
+    .impact-chiffres {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1px;
+      background:rgba(255,255,255,0.08);
+    }
+
+    .impact-chiffre {
+      background:var(--noir2);
+      padding:2rem 1.8rem;
+    }
+
+    .impact-chiffre-n {
+      font-family:var(--font-titre);
+      font-size:3rem;
+      font-weight:800;
+      color:var(--jaune);
+      line-height:1;
+      margin-bottom:0.4rem;
+    }
+
+    .impact-chiffre-l {
+      font-size:14px;
+      color:rgba(255,255,255,0.65);
+      line-height:1.5;
+    }
+
+    .impact-texte p {
+      font-size:15.5px;
+      color:rgba(255,255,255,0.7);
+      line-height:1.85;
+      margin-bottom:1.2rem;
+    }
+
+    .impact-valeurs {
+      margin-top:2rem;
+      display:flex;
+      flex-direction:column;
+      gap:1px;
+      background:rgba(255,255,255,0.06);
+    }
+
+    .ival {
+      background:var(--noir2);
+      padding:1rem 1.4rem;
+      display:flex;
+      gap:1rem;
+      align-items:center;
+    }
+
+    .ival-icon {
+      width:36px;
+      height:36px;
+      background:rgba(26,111,196,0.2);
+      border-radius:4px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1rem;
+      flex-shrink:0;
+    }
+
+    .ival span {
+      font-size:14px;
+      color:rgba(255,255,255,0.75);
+      font-weight:500;
+    }
+
+    /* ── ACTUALITÉS style Amnesty ── */
+    .actu { background:var(--gris-lt); }
+
+    .actu-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      margin-bottom:2.5rem;
+    }
+
+    .actu-grid {
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:1.5rem;
+    }
+
+    .actu-card {
+      background:#fff;
+      border:0.5px solid var(--gris-bord);
+      overflow:hidden;
+      border-radius:3px;
+    }
+
+    .actu-card-img {
+      aspect-ratio:16/9;
+      overflow:hidden;
+    }
+
+    .actu-card-img img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .4s;
+    }
+
+    .actu-card:hover .actu-card-img img { transform:scale(1.04); }
+
+    .actu-card-body { padding:1.4rem; }
+
+    .actu-tag {
+      font-size:10.5px;
+      font-weight:700;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:var(--bleu);
+      margin-bottom:0.5rem;
+      font-family:var(--font-titre);
+    }
+
+    .actu-card h3 {
+      font-family:var(--font-titre);
+      font-size:16px;
+      font-weight:700;
+      line-height:1.35;
+      color:var(--noir);
+      margin-bottom:0.6rem;
+    }
+
+    .actu-card-featured h3 { font-size:20px; }
+
+    .actu-card p {
+      font-size:13.5px;
+      color:#555;
+      line-height:1.65;
+    }
+
+    .actu-date {
+      font-size:12px;
+      color:var(--gris-md);
+      margin-top:0.8rem;
+      display:block;
+    }
+
+    /* ── ADHÉSION ── */
+    .adhesion { background:#fff; }
+
+    .adhesion-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:5rem;
+      align-items:start;
+    }
+
+    .adhesion-img {
+      position:relative;
+      border-radius:4px;
+      overflow:hidden;
+      aspect-ratio:4/3;
+    }
+
+    .adhesion-img img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .adhesion-img-badge {
+      position:absolute;
+      top:1.2rem;
+      left:1.2rem;
+      background:#fff;
+      padding:0.8rem 1.2rem;
+      border-left:4px solid var(--bleu);
+    }
+
+    .adhesion-img-badge strong {
+      display:block;
+      font-family:var(--font-titre);
+      font-size:1.5rem;
+      font-weight:800;
+      color:var(--bleu);
+      line-height:1;
+    }
+
+    .adhesion-img-badge span {
+      font-size:12px;
+      color:#555;
+      margin-top:2px;
+      display:block;
+    }
+
+    .adhesion-content p {
+      font-size:15.5px;
+      color:#444;
+      line-height:1.85;
+      margin-bottom:1.2rem;
+    }
+
+    .steps {
+      margin:1.5rem 0 2rem;
+      display:flex;
+      flex-direction:column;
+      gap:1px;
+      background:var(--gris-bord);
+    }
+
+    .step-row {
+      background:#fff;
+      display:flex;
+      gap:1.2rem;
+      align-items:flex-start;
+      padding:1.2rem 1.4rem;
+    }
+
+    .step-n {
+      width:32px;
+      height:32px;
+      background:var(--bleu);
+      color:#fff;
+      font-family:var(--font-titre);
+      font-size:14px;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+
+    .step-body strong {
+      display:block;
+      font-size:14px;
+      font-weight:700;
+      color:var(--noir);
+      margin-bottom:2px;
+      font-family:var(--font-titre);
+    }
+
+    .step-body span { font-size:13px; color:#666; line-height:1.5; }
+
+    /* ── FORMULAIRE ── */
+    .form-wrap {
+      background:var(--gris-lt);
+      border-radius:4px;
+      overflow:hidden;
+    }
+
+    .form-head {
+      background:var(--bleu);
+      padding:1.2rem 1.8rem;
+    }
+
+    .form-head h3 {
+      font-family:var(--font-titre);
+      font-size:17px;
+      font-weight:700;
+      color:#fff;
+    }
+
+    .form-head p { font-size:13px; color:rgba(255,255,255,0.75); margin-top:2px; }
+
+    .form-body { padding:1.6rem 1.8rem; }
+
+    .fg { margin-bottom:1rem; }
+
+    label {
+      display:block;
+      font-size:11.5px;
+      font-weight:600;
+      letter-spacing:0.5px;
+      text-transform:uppercase;
+      color:var(--gris-md);
+      margin-bottom:5px;
+      font-family:var(--font-titre);
+    }
+
+    input[type=text], input[type=email], input[type=tel], textarea, select {
+      width:100%;
+      padding:10px 12px;
+      border:1px solid var(--gris-bord);
+      border-radius:3px;
+      font-family:var(--font-corps);
+      font-size:14px;
+      color:var(--noir);
+      background:#fff;
+      outline:none;
+      transition:border-color .2s;
+    }
+
+    input:focus, select:focus, textarea:focus { border-color:var(--bleu); }
+    textarea { resize:vertical; min-height:80px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+    .btn-form {
+      width:100%;
+      padding:13px;
+      background:var(--bleu);
+      color:#fff;
+      border:none;
+      font-family:var(--font-titre);
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:0.5px;
+      cursor:pointer;
+      transition:background .2s;
+    }
+    .btn-form:hover { background:#1558a0; }
+
+    /* ── CONTACT ── */
+    .contact { background:var(--noir); }
+    .contact h2 { color:#fff; }
+    .contact .s-kicker { color:rgba(255,255,255,0.5); }
+    .contact .h-trait { background:var(--bleu); }
+
+    .contact-grid {
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:5rem;
+      align-items:start;
+    }
+
+    .contact-cards {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1px;
+      background:rgba(255,255,255,0.07);
+      margin-top:2rem;
+    }
+
+    .ccard {
+      background:var(--noir2);
+      padding:1.4rem;
+      transition:background .2s;
+    }
+
+    .ccard:hover { background:#2a2a2a; }
+    .ccard.full { grid-column:1/-1; }
+
+    .ccard-icon {
+      font-size:1.4rem;
+      margin-bottom:0.6rem;
+      display:block;
+    }
+
+    .ccard strong {
+      display:block;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.4);
+      margin-bottom:4px;
+      font-family:var(--font-titre);
+    }
+
+    .ccard span, .ccard a {
+      font-size:14px;
+      color:rgba(255,255,255,0.75);
+      line-height:1.65;
+      text-decoration:none;
+      display:block;
+    }
+
+    .ccard a:hover { color:var(--jaune); }
+
+    .contact-map {
+      background:#1a1a1a;
+      border:1px solid rgba(255,255,255,0.07);
+      border-radius:4px;
+      min-height:320px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:0.8rem;
+      text-align:center;
+      padding:2.5rem;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .contact-map::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(26,111,196,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,111,196,0.05) 1px, transparent 1px);
+      background-size:36px 36px;
+    }
+
+    .map-pin { font-size:2.8rem; position:relative; z-index:1; }
+    .map-city { font-family:var(--font-titre); font-size:1.5rem; font-weight:800; color:#fff; z-index:1; position:relative; }
+    .map-rue { font-size:13px; color:rgba(255,255,255,0.5); z-index:1; position:relative; }
+    .map-pill {
+      background:rgba(26,111,196,0.2);
+      border:1px solid rgba(26,111,196,0.4);
+      color:#6ab0f5;
+      font-size:12px;
+      padding:5px 16px;
+      border-radius:20px;
+      z-index:1;
+      position:relative;
+      margin-top:0.4rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background:#080808;
+      border-top:3px solid var(--bleu);
+      padding:4.5rem 2.5rem 2rem;
+    }
+
+    .footer-top {
+      display:grid;
+      grid-template-columns:2.2fr 1fr 1fr 1fr;
+      gap:3rem;
+      max-width:1140px;
+      margin:0 auto 3rem;
+      padding-bottom:3rem;
+      border-bottom:1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-brand-name {
+      font-family:var(--font-titre);
+      font-size:1.6rem;
+      font-weight:800;
+      color:#fff;
+      margin-bottom:0.6rem;
+      letter-spacing:0.5px;
+    }
+
+    .footer-slogan {
+      font-size:12.5px;
+      color:rgba(255,255,255,0.45);
+      line-height:1.7;
+      max-width:280px;
+      margin-bottom:1.4rem;
+      font-style:italic;
+    }
+
+    .socials { display:flex; gap:0.5rem; }
+
+    .soc {
+      width:34px; height:34px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.1);
+      color:rgba(255,255,255,0.55);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      font-weight:700;
+      text-decoration:none;
+      border-radius:3px;
+      transition:all .2s;
+    }
+    .soc:hover { background:var(--bleu); color:#fff; border-color:var(--bleu); }
+
+    .footer-col h4 {
+      font-family:var(--font-titre);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.35);
+      margin-bottom:1.1rem;
+    }
+
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:0.6rem; }
+    .footer-col a { font-size:13.5px; color:rgba(255,255,255,0.5); text-decoration:none; transition:color .2s; }
+    .footer-col a:hover { color:#fff; }
+
+    .footer-bottom {
+      max-width:1140px;
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:0.5rem;
+    }
+    .footer-bottom p { font-size:12.5px; color:rgba(255,255,255,0.25); }
+    .footer-reg { font-size:11.5px; color:rgba(255,255,255,0.15); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity:1; transition:opacity .7s ease, transform .7s ease; }
+    .reveal.pre { opacity:0; transform:translateY(24px); }
+    .reveal.in { opacity:1; transform:translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px){
+      .mission-grid, .impact-grid, .adhesion-grid, .contact-grid { grid-template-columns:1fr; gap:3rem; }
+      .domaines-grid { grid-template-columns:repeat(2,1fr); }
+      .actu-grid { grid-template-columns:1fr 1fr; }
+      .footer-top { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:768px){
+      .topbar { display:none; }
+      nav { padding:0 1.5rem; }
+      .nav-menu { display:none; }
+      section { padding:4rem 1.5rem; }
+      .hero { min-height:80vh; }
+      .hero-content { padding:0 1.5rem 3rem; }
+      .stats-band { grid-template-columns:1fr 1fr; }
+      .domaines-grid { grid-template-columns:1fr 1fr; }
+      .actu-grid { grid-template-columns:1fr; }
+      .contact-cards { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .footer-top { grid-template-columns:1fr; gap:2rem; }
+      footer { padding:3rem 1.5rem 2rem; }
+      .footer-bottom { flex-direction:column; text-align:center; }
+    }
+    @media(max-width:480px){
+      .domaines-grid { grid-template-columns:1fr; }
+      .stats-band { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-item">📞 <a href="tel:+22822518555">+228 22 51 85 55</a></span>
+    <span class="topbar-item">✉️ <a href="mailto:cricd@gmail.com">cricd@gmail.com</a></span>
+    <span class="topbar-item">📍 Soviépé, Lomé 08, Togo</span>
+  </div>
+  <span class="topbar-right">Enregistrée MAT Togo · N° 0561 · 07 août 2024</span>
+</div>
+
+<!-- NAV -->
+<nav id="mainnav">
+  <a class="nav-brand" href="#">
+    <svg class="nav-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="47" stroke="#1A6FC4" stroke-width="2.5" fill="none"/>
+      <circle cx="24" cy="38" r="13" stroke="#F5C800" stroke-width="3" fill="none"/>
+      <circle cx="39" cy="38" r="13" stroke="#111111" stroke-width="3" fill="none"/>
+      <circle cx="54" cy="38" r="13" stroke="#1A6FC4" stroke-width="3" fill="none"/>
+      <circle cx="69" cy="38" r="13" stroke="#C8001A" stroke-width="3" fill="none"/>
+      <circle cx="84" cy="38" r="13" stroke="#0D6B33" stroke-width="3" fill="none"/>
+      <text x="50" y="70" text-anchor="middle" font-family="Raleway,sans-serif" font-weight="800" font-size="12" fill="#1A6FC4">CRI-CD</text>
+    </svg>
+    <div class="nav-wordmark">
+      <strong>CRI-CD</strong>
+      <span>Instruction · Culture · Développement Durable</span>
+    </div>
+  </a>
+
+  <ul class="nav-menu">
+    <li><a href="#mission">À propos</a></li>
+    <li><a href="#domaines">Domaines</a></li>
+    <li><a href="#actu">Actualités</a></li>
+    <li><a href="#adhesion">Adhésion</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <a class="nav-adherer" href="#adhesion">Adhérer →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="accueil">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content reveal">
+    <div class="hero-tag">Association · Lomé, Togo · 2024</div>
+    <h1>Bâtissons ensemble<br>un monde meilleur<br>et paisible</h1>
+    <p>Le CRI-CD œuvre pour l'instruction, la culture et le développement durable — unissant hommes et femmes de tous horizons autour de valeurs communes de solidarité et de citoyenneté.</p>
+    <div class="hero-btns">
+      <a href="#adhesion" class="btn-blanc">Rejoindre le CRI-CD</a>
+      <a href="#mission" class="btn-contour-blanc">Découvrir notre mission</a>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="sband"><div class="sband-n">2024</div><div class="sband-l">Fondé à Lomé, Togo</div></div>
+  <div class="sband"><div class="sband-n">8</div><div class="sband-l">Domaines d'intervention</div></div>
+  <div class="sband"><div class="sband-n">1 000F</div><div class="sband-l">Cotisation mensuelle</div></div>
+  <div class="sband"><div class="sband-n">5</div><div class="sband-l">Continents représentés</div></div>
+</div>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="container mission-grid reveal">
+    <div class="mission-text">
+      <div class="s-kicker">Notre association</div>
+      <h2>Un cercle de réflexion au service de la société togolaise</h2>
+      <div class="h-trait"></div>
+      <p>Le Cercle de Réflexion pour l'Instruction, la Culture et le Développement Durable (CRI-CD) est une association apolitique basée à Soviépé, Lomé. Fondée le 15 janvier 2024 et officiellement enregistrée au Ministère de l'Administration Territoriale du Togo.</p>
+      <p>Notre vision : <strong>contribuer à bâtir une nation plus sûre et plus juste</strong> en réduisant les impacts des inégalités, de l'exclusion, de l'incivisme, du chômage et de la corruption.</p>
+      <p>Ouverte à tous sans distinction de race, d'âge ou de genre — car l'unité qui nous rassemble et la diversité qui nous enrichit sont nos plus grandes forces.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
+        <a href="#adhesion" class="btn-bleu">Nous rejoindre</a>
+        <a href="#domaines" class="btn-contour-bleu">Nos domaines</a>
+      </div>
+    </div>
+    <div class="mission-img">
+      <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80" alt="Communauté CRI-CD">
+      <div class="mission-img-badge">Apolitique · Non lucratif</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINES -->
+<section class="domaines" id="domaines">
+  <div class="container">
+    <div class="domaines-header reveal">
+      <div>
+        <div class="s-kicker">Ce que nous faisons</div>
+        <h2>Nos 8 domaines d'intervention</h2>
+        <div class="h-trait"></div>
+      </div>
+      <p>Le CRI-CD agit sur des axes complémentaires pour accompagner les populations et promouvoir un épanouissement collectif durable au Togo et au-delà.</p>
+    </div>
+    <div class="domaines-grid reveal">
+
+      <div class="dom-card">
+        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&q=75" alt="Formation">
+        <div class="dom-card-overlay"></div>
+        <div class="dom-card-body">
+          <div class="dom-card-num">01</div>
+          <h3>Formation</h3>
+          <p>Renforcement des compétences des acteurs socio-économiques et culturels.</p>
+        </div>
+      </div>
+
+      <div class="dom-card">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=75" alt="Apprentissage">
+        <div class="dom-card-overlay"></div>
+        <div class="dom-card-body">
+          <div class="dom-card-num">02</div>
+          <h3>Apprentissage</h3>
+          <p>Nouvelles approches pédagogiques adaptées aux zones rurales et urbaines.</p>
+        </div>
+      </div>
+
+      <div class="dom-card">
+        <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=600&q=75" alt="Sensibilisation">
+        <div class="dom-card-overlay"></div>
+        <div class="dom-card-body">
+          <div class="dom-card-num">03</div>
+          <h3>Sensibilisation</h3>
+          <p>Conférences, colloques et rencontres d'information sur des thèmes clés.</p>
+        </div>
+      </div>
+
+      <div class="dom-card">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=75" alt="Perfectionnement">
+        <div class="dom-card-overlay"></div>
+        <div class="dom-card-body">
+          <div class="dom-card-num">04</div>
+          <h3>Perfectionnement</h3>
+          <p>Formation continue et mise à niveau des compétences professionnelles.</p>
+        </div>
+      </div>
+
+      <div class="dom-card">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=75" alt="Professionnalisation">
+        <div class="dom-card-overlay"></div>
+        <div class="dom-card-body">
+          <div class="dom-card-num">05</div>
+          <h3>Professionnalisation</h3>
+          <p>Insertion professionnelle et lutte active contre le chômage.</p>
+        </div>
+      </div>
+
+      <div class="dom-card">
+        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&q=75" alt="Entraide">
+        <div class="dom-card-overlay"></div>
+        <div class="dom-card-body">
+          <div class="dom-card-num">06</div>
+          <h3>Entraide</h3>
+          <p>Soutien aux démunis et aux victimes de catastrophes naturelles.</p>
+        </div>
+      </div>
+
+      <div class="dom-card">
+        <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=75" alt="Orientation">
+        <div class="dom-card-overlay"></div>
+        <div class="dom-card-body">
+          <div class="dom-card-num">07</div>
+          <h3>Orientation</h3>
+          <p>Conseil et accompagnement des jeunes dans leurs parcours de vie.</p>
+        </div>
+      </div>
+
+      <div class="dom-card">
+        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=75" alt="Social et Culture">
+        <div class="dom-card-overlay"></div>
+        <div class="dom-card-body">
+          <div class="dom-card-num">08</div>
+          <h3>Social &amp; Culture</h3>
+          <p>Promotion des talents culturels, de la diversité et de la cohésion.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="container reveal">
+    <div class="s-kicker">Notre impact</div>
+    <h2>Agir pour une société plus juste</h2>
+    <div class="h-trait"></div>
+    <div class="impact-grid">
+      <div class="impact-chiffres">
+        <div class="impact-chiffre">
+          <div class="impact-chiffre-n">2024</div>
+          <div class="impact-chiffre-l">Fondée officiellement à Lomé, Togo</div>
+        </div>
+        <div class="impact-chiffre">
+          <div class="impact-chiffre-n">8</div>
+          <div class="impact-chiffre-l">Domaines d'action complémentaires</div>
+        </div>
+        <div class="impact-chiffre">
+          <div class="impact-chiffre-n">5</div>
+          <div class="impact-chiffre-l">Continents représentés dans notre logo</div>
+        </div>
+        <div class="impact-chiffre">
+          <div class="impact-chiffre-n">1K F</div>
+          <div class="impact-chiffre-l">CFA pour adhérer et rejoindre le mouvement</div>
+        </div>
+      </div>
+      <div class="impact-texte">
+        <p>Le CRI-CD croit en la force du collectif. Chaque membre, chaque action, chaque initiative contribue à construire une société togolaise plus solidaire, plus éduquée et plus citoyenne.</p>
+        <p>Nos valeurs fondamentales guident chacune de nos décisions et chacun de nos projets.</p>
+        <div class="impact-valeurs">
+          <div class="ival"><div class="ival-icon">🤝</div><span>Solidarité &amp; Entraide</span></div>
+          <div class="ival"><div class="ival-icon">⚖️</div><span>Culture citoyenne &amp; Droits humains</span></div>
+          <div class="ival"><div class="ival-icon">♀️</div><span>Égalité &amp; Inclusion</span></div>
+          <div class="ival"><div class="ival-icon">🌱</div><span>Développement durable</span></div>
+          <div class="ival"><div class="ival-icon">🏛️</div><span>Bonne gouvernance &amp; Transparence</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTUALITÉS -->
+<section class="actu" id="actu">
+  <div class="container">
+    <div class="actu-header reveal">
+      <div>
+        <div class="s-kicker">Vie de l'association</div>
+        <h2>Actualités &amp; Événements</h2>
+        <div class="h-trait"></div>
+      </div>
+      <a href="#" class="btn-contour-bleu" style="font-size:13px;padding:9px 22px;">Toutes les actualités →</a>
+    </div>
+    <div class="actu-grid reveal">
+
+      <div class="actu-card actu-card-featured">
+        <div class="actu-card-img">
+          <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=900&q=80" alt="Assemblée générale">
+        </div>
+        <div class="actu-card-body">
+          <div class="actu-tag">Événement</div>
+          <h3>Assemblée Générale Constitutive — Naissance officielle du CRI-CD</h3>
+          <p>Le 15 janvier 2024, les membres fondateurs se sont réunis à Lomé pour donner naissance au Cercle de Réflexion pour l'Instruction, la Culture et le Développement Durable.</p>
+          <span class="actu-date">15 janvier 2024</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+        <div class="actu-card">
+          <div class="actu-card-img">
+            <img src="https://images.unsplash.com/photo-1544531585-9847b68c8c86?w=600&q=75" alt="Formation">
+          </div>
+          <div class="actu-card-body">
+            <div class="actu-tag">Formation</div>
+            <h3>Atelier de renforcement des capacités des acteurs locaux</h3>
+            <span class="actu-date">Mars 2024</span>
+          </div>
+        </div>
+
+        <div class="actu-card">
+          <div class="actu-card-img">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=75" alt="Sensibilisation">
+          </div>
+          <div class="actu-card-body">
+            <div class="actu-tag">Sensibilisation</div>
+            <h3>Conférence sur la citoyenneté et le développement durable à Lomé</h3>
+            <span class="actu-date">Juin 2024</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ADHÉSION -->
+<section class="adhesion" id="adhesion">
+  <div class="container adhesion-grid reveal">
+    <div>
+      <div class="adhesion-img">
+        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=80" alt="Rejoindre le CRI-CD">
+        <div class="adhesion-img-badge">
+          <strong>1 000 F</strong>
+          <span>CFA pour adhérer</span>
+        </div>
+      </div>
+    </div>
+    <div class="adhesion-content">
+      <div class="s-kicker">Devenir membre</div>
+      <h2>Rejoignez le CRI-CD aujourd'hui</h2>
+      <div class="h-trait"></div>
+      <p>Le CRI-CD est ouvert à toute personne animée d'un esprit de créativité et d'initiative, sans distinction de race, d'âge ou de genre.</p>
+
+      <div class="steps">
+        <div class="step-row">
+          <div class="step-n">1</div>
+          <div class="step-body">
+            <strong>Remplir le formulaire</strong>
+            <span>Soumettez votre demande d'adhésion motivée en ligne ou en personne.</span>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-n">2</div>
+          <div class="step-body">
+            <strong>Fournir le dossier</strong>
+            <span>Acte de naissance · Pièce d'identité · CV actualisé · 2 photos d'identité.</span>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-n">3</div>
+          <div class="step-body">
+            <strong>Payer les frais d'adhésion</strong>
+            <span>1 000 F CFA à l'inscription, puis 1 000 F CFA par mois.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-wrap">
+        <div class="form-head">
+          <h3>Formulaire d'adhésion en ligne</h3>
+          <p>Votre dossier sera examiné par le Bureau Exécutif.</p>
+        </div>
+        <div class="form-body">
+          <div class="form-row">
+            <div class="fg"><label for="prenom">Prénom</label><input type="text" id="prenom" placeholder="Votre prénom"></div>
+            <div class="fg"><label for="nom">Nom</label><input type="text" id="nom" placeholder="Votre nom"></div>
+          </div>
+          <div class="fg"><label for="email">E-mail</label><input type="email" id="email" placeholder="votre@email.com"></div>
+          <div class="fg"><label for="tel">Téléphone</label><input type="tel" id="tel" placeholder="+228 XX XX XX XX"></div>
+          <div class="fg">
+            <label for="type">Type d'adhésion</label>
+            <select id="type">
+              <option>Membre Actif</option>
+              <option>Membre Sympathisant / Bienfaiteur</option>
+              <option>Membre d'Honneur (sur proposition)</option>
+            </select>
+          </div>
+          <div class="fg"><label for="motiv">Motivation</label><textarea id="motiv" placeholder="Pourquoi souhaitez-vous rejoindre le CRI-CD ?"></textarea></div>
+          <button class="btn-form" onclick="submit()">Envoyer ma demande d'adhésion →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container contact-grid reveal">
+    <div>
+      <div class="s-kicker">Nous contacter</div>
+      <h2>Coordonnées &amp; localisation</h2>
+      <div class="h-trait"></div>
+      <div class="contact-cards">
+        <div class="ccard">
+          <span class="ccard-icon">📍</span>
+          <strong>Siège social</strong>
+          <span>21 Sov., Rue du Révérend Père Gobi<br>Soviépé — 08 BP 8313 Lomé 08, Togo</span>
+        </div>
+        <div class="ccard">
+          <span class="ccard-icon">📞</span>
+          <strong>Téléphone</strong>
+          <a href="tel:+22822518555">+228 22 51 85 55</a>
+          <a href="tel:+22890045653">+228 90 04 56 53</a>
+        </div>
+        <div class="ccard">
+          <span class="ccard-icon">✉️</span>
+          <strong>E-mail</strong>
+          <a href="mailto:cricd@gmail.com">cricd@gmail.com</a>
+        </div>
+        <div class="ccard">
+          <span class="ccard-icon">🏦</span>
+          <strong>Banque</strong>
+          <span>IB Bank Togo<br>N° 01039 2507830010164</span>
+        </div>
+        <div class="ccard full">
+          <span class="ccard-icon">🏛️</span>
+          <strong>Enregistrement officiel</strong>
+          <span>Ministère de l'Administration Territoriale du Togo · Récépissé N° 0561 du 07 août 2024</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-map">
+      <div class="map-pin">📍</div>
+      <div class="map-city">Soviépé, Lomé</div>
+      <div class="map-rue">Rue du Révérend Père Gobi · 08 BP 8313 Lomé 08</div>
+      <div class="map-pill">→ Intégrer Google Maps ici</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">CRI-CD</div>
+      <div class="footer-slogan">« Bâtissons ensemble un monde meilleur et paisible »</div>
+      <div class="socials">
+        <a class="soc" href="#">f</a>
+        <a class="soc" href="#">in</a>
+        <a class="soc" href="#">𝕏</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#mission">À propos</a></li>
+        <li><a href="#domaines">Nos domaines</a></li>
+        <li><a href="#actu">Actualités</a></li>
+        <li><a href="#adhesion">Adhésion</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Documents</h4>
+      <ul>
+        <li><a href="#">Statuts (PDF)</a></li>
+        <li><a href="#">Règlement Intérieur</a></li>
+        <li><a href="#">Formulaire adhésion</a></li>
+        <li><a href="#">Rapport d'activités</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:cricd@gmail.com">cricd@gmail.com</a></li>
+        <li><a href="tel:+22822518555">+228 22 51 85 55</a></li>
+        <li><a href="tel:+22890045653">+228 90 04 56 53</a></li>
+        <li><a href="#">Soviépé, Lomé 08</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 CRI-CD — Cercle de Réflexion pour l'Instruction, la Culture et le Développement Durable</p>
+    <span class="footer-reg">MAT Togo · N° 0561 · 07/08/2024 · IB Bank N° 01039 2507830010164</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainnav').style.boxShadow =
+      window.scrollY > 20 ? '0 2px 20px rgba(0,0,0,0.1)' : '0 1px 8px rgba(0,0,0,0.06)';
+  });
+
+  // Reveal au scroll
+  const els = document.querySelectorAll('.reveal');
+  els.forEach(el => el.classList.add('pre'));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => { e.target.classList.remove('pre'); e.target.classList.add('in'); }, i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  els.forEach(el => obs.observe(el));
+
+  // Formulaire
+  function submit() {
+    const p = document.getElementById('prenom').value.trim();
+    if (!p) { alert('Veuillez indiquer votre prénom.'); return; }
+    alert('Merci ' + p + ' !\n\nVotre demande d\'adhésion a été envoyée avec succès.\nLe Bureau Exécutif du CRI-CD vous contactera prochainement.\n\nBâtissons ensemble un monde meilleur et paisible !');
+  }
+</script>
+</body>
+</html>

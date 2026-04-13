@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRI-CD — Bienvenue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html, body { width:100%; height:100%; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #0F1923;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fond : grandes anneaux décoratifs */
+    .bg-rings {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .bg-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(26,111,196,0.08);
+    }
+
+    .bg-ring.r1 { width:800px; height:800px; }
+    .bg-ring.r2 { width:600px; height:600px; border-color:rgba(26,111,196,0.12); }
+    .bg-ring.r3 { width:400px; height:400px; border-color:rgba(26,111,196,0.16); }
+
+    /* Grain subtil */
+    body::after {
+      content:'';
+      position:absolute;
+      inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events:none;
+    }
+
+    /* Contenu central */
+    .portal {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      text-align: center;
+    }
+
+    /* Lien englobant tout */
+    .portal-link {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      cursor: pointer;
+    }
+
+    /* Logo SVG */
+    .logo-wrap {
+      width: 180px;
+      height: 180px;
+      transition: transform 0.5s cubic-bezier(.34,1.56,.64,1);
+    }
+
+    .portal-link:hover .logo-wrap {
+      transform: scale(1.06);
+    }
+
+    /* Nom association */
+    .portal-acronym {
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 6px;
+      line-height: 1;
+    }
+
+    .portal-rule {
+      width: 60px;
+      height: 2px;
+      background: #1A6FC4;
+      margin: 0.6rem auto;
+      transition: width 0.4s ease;
+    }
+
+    .portal-link:hover .portal-rule { width: 100px; }
+
+    .portal-fullname {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 1px;
+      line-height: 1.6;
+      max-width: 340px;
+    }
+
+    /* Bouton entrer */
+    .portal-enter {
+      margin-top: 2.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #1A6FC4;
+      color: #fff;
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .portal-enter:hover {
+      background: #1558a0;
+      transform: translateY(-2px);
+    }
+
+    .portal-enter-arrow {
+      font-size: 16px;
+      transition: transform 0.3s;
+    }
+
+    .portal-enter:hover .portal-enter-arrow {
+      transform: translateX(5px);
+    }
+
+    /* Slogan bas */
+    .portal-slogan {
+      margin-top: 3rem;
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+
+    /* Bande drapeau Togo en bas */
+    .flag-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg,
+        #0D6B33 0%, #0D6B33 33.3%,
+        #F5C800 33.3%, #F5C800 66.6%,
+        #C8001A 66.6%, #C8001A 100%);
+    }
+
+    /* Enregistrement coin */
+    .reg-tag {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.18);
+      letter-spacing: 0.5px;
+    }
+
+    /* Animation d'entrée */
+    .portal {
+      animation: fadeIn 1s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; transform: translateY(16px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Anneaux décoratifs fond -->
+  <div class="bg-rings">
+    <div class="bg-ring r1"></div>
+    <div class="bg-ring r2"></div>
+    <div class="bg-ring r3"></div>
+  </div>
+
+  <!-- Portail -->
+  <div class="portal">
+    <a class="portal-link" href="cricd_v5.html">
+
+      <!-- Logo SVG CRI-CD -->
+      <svg class="logo-wrap" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Cercle extérieur -->
+        <circle cx="100" cy="100" r="96" stroke="#1A6FC4" stroke-width="3" fill="none"/>
+        <!-- Texte circulaire simulé par arc (remplacer par vrai texte svg si besoin) -->
+        <circle cx="100" cy="100" r="84" stroke="rgba(26,111,196,0.2)" stroke-width="0.5" fill="none"/>
+        <!-- 5 anneaux entrelacés -->
+        <circle cx="52"  cy="86" r="26" stroke="#F5C800" stroke-width="5.5" fill="none"/>
+        <circle cx="79"  cy="86" r="26" stroke="#111111" stroke-width="5.5" fill="none"/>
+        <circle cx="106" cy="86" r="26" stroke="#1A6FC4" stroke-width="5.5" fill="none"/>
+        <circle cx="133" cy="86" r="26" stroke="#C8001A" stroke-width="5.5" fill="none"/>
+        <circle cx="160" cy="86" r="26" stroke="#0D6B33" stroke-width="5.5" fill="none" style="display:none"/>
+        <!-- Recouvrements pour effet entrelacé -->
+        <path d="M79 60 A26 26 0 0 1 105 86" stroke="#F5C800" stroke-width="5.5" fill="none"/>
+        <path d="M106 60 A26 26 0 0 1 132 86" stroke="#111111" stroke-width="5.5" fill="none"/>
+        <path d="M133 60 A26 26 0 0 1 159 86" stroke="#1A6FC4" stroke-width="5.5" fill="none"/>
+        <!-- Texte CRI-CD -->
+        <text x="100" y="142" text-anchor="middle" font-family="Raleway,sans-serif" font-weight="800" font-size="22" fill="#1A6FC4" letter-spacing="4">CRI-CD</text>
+        <!-- Texte périphérique -->
+        <text x="100" y="165" text-anchor="middle" font-family="Raleway,sans-serif" font-weight="400" font-size="7.5" fill="rgba(255,255,255,0.4)" letter-spacing="1.5">LOMÉ · TOGO · 2024</text>
+      </svg>
+
+      <div>
+        <div class="portal-acronym">CRI-CD</div>
+        <div class="portal-rule"></div>
+        <div class="portal-fullname">
+          Cercle de Réflexion pour l'Instruction,<br>la Culture et le Développement Durable
+        </div>
+      </div>
+
+      <div class="portal-enter">
+        Entrer sur le site
+        <span class="portal-enter-arrow">→</span>
+      </div>
+
+    </a>
+
+    <div class="portal-slogan">
+      « Bâtissons ensemble un monde meilleur et paisible »
+    </div>
+  </div>
+
+  <!-- Drapeau Togo -->
+  <div class="flag-bottom"></div>
+
+  <!-- Badge enregistrement -->
+  <div class="reg-tag">Enreg. MAT Togo · N° 0561 · 2024</div>
+
+</body>
+</html>
