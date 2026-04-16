@@ -956,6 +956,102 @@
       .domaines-grid { grid-template-columns:1fr; }
       .stats-band { grid-template-columns:1fr; }
     }
+
+    /* ── BUREAU EXÉCUTIF ── */
+    .bureau { background: #fff; border-bottom: 1px solid var(--gris-bord); }
+
+    .bureau-header { margin-bottom: 2.5rem; }
+
+    .bureau-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 4rem;
+      align-items: start;
+      background: var(--gris-lt);
+      border: 1px solid var(--gris-bord);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .bureau-photo-wrap {
+      width: 280px;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .bureau-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform .5s ease;
+    }
+
+    .bureau-card:hover .bureau-photo { transform: scale(1.03); }
+
+    .bureau-info {
+      padding: 2.5rem 2.5rem 2.5rem 0;
+    }
+
+    .bureau-titre {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--bleu);
+      margin-bottom: 0.5rem;
+      font-family: var(--font-titre);
+    }
+
+    .bureau-nom {
+      font-family: var(--font-titre);
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--noir);
+      line-height: 1.1;
+      margin-bottom: 0;
+    }
+
+    .bureau-separateur {
+      width: 44px;
+      height: 3px;
+      background: var(--bleu);
+      margin: 1rem 0 1.4rem;
+    }
+
+    .bureau-bio {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    .bureau-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .bureau-tag {
+      background: var(--blanc);
+      border: 1px solid var(--gris-bord);
+      color: var(--gris-md);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 3px;
+      font-family: var(--font-titre);
+      letter-spacing: 0.3px;
+    }
+
+    @media(max-width:768px) {
+      .bureau-card { grid-template-columns: 1fr; }
+      .bureau-photo-wrap { width: 100%; aspect-ratio: 4/3; }
+      .bureau-info { padding: 1.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -985,7 +1081,7 @@
     <li><a href="#mission">À propos</a></li>
     <li><a href="#domaines">Domaines</a></li>
     <li><a href="#actu">Actualités</a></li>
-    <li><a href="#adhesion">Adhésion</a></li>
+    <li><a href="#bureau">Direction</a></li><li><a href="#adhesion">Adhésion</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 
@@ -998,7 +1094,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-content reveal">
     <div class="hero-tag">Association · Lomé, Togo · 2024</div>
-    <h1>Bâtissons ensemble<br>un monde meilleur<br>et paisible</h1>
+    <h1>Bâtissons ensemble<br>un monde solidaire,<br>meilleur et paisible</h1>
     <p>Le CRI-CD œuvre pour l'instruction, la culture et le développement durable — unissant hommes et femmes de tous horizons autour de valeurs communes de solidarité et de citoyenneté.</p>
     <div class="hero-btns">
       <a href="#adhesion" class="btn-blanc">Rejoindre le CRI-CD</a>
@@ -1227,6 +1323,44 @@
   </div>
 </section>
 
+<!-- BUREAU EXÉCUTIF -->
+<section class="bureau" id="bureau">
+  <div class="container">
+    <div class="bureau-header reveal">
+      <div class="s-kicker">Notre Bureau Exécutif</div>
+      <h2>La direction du CRI-CD</h2>
+      <div class="h-trait"></div>
+    </div>
+    <div class="bureau-card reveal">
+      <div class="bureau-photo-wrap">
+        <img src="president.jpeg" alt="Michael Agoda TANDJAWA — Président du CRI-CD" class="bureau-photo">
+      </div>
+      <div class="bureau-info">
+        <div class="bureau-titre">Président</div>
+        <h3 class="bureau-nom">Michael Agoda TANDJAWA</h3>
+        <div class="bureau-separateur"></div>
+        <p class="bureau-bio">
+          Gestionnaire Commercial et Financier, Michael Agoda TANDJAWA est le fondateur et Président du CRI-CD. 
+          Titulaire d'un Master en Gestion des Projets (BAC+5) et d'une Maîtrise en Gestion Commerciale et Financière 
+          de l'Institut Africain d'Administration et d'Études Commerciales (IAEC) de Lomé, il cumule plus de 22 ans 
+          d'expérience professionnelle en management commercial, gestion de projets et entrepreneuriat.
+        </p>
+        <p class="bureau-bio">
+          Chef d'entreprises du Groupe CHRONOSERVICES INTERNATIONAL, il est également Prestataire de Services 
+          de Confiance Électroniques (PSCE), accrédité par l'ARCEP Togo. Son parcours international — de la France 
+          à la Côte d'Ivoire en passant par le Liban — et sa vision du développement humain ont été au cœur de la 
+          création du CRI-CD en janvier 2024.
+        </p>
+        <div class="bureau-tags">
+          <span class="bureau-tag">Master Gestion des Projets</span>
+          <span class="bureau-tag">+22 ans d'expérience</span>
+          <span class="bureau-tag">PSCE · ARCEP Togo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ADHÉSION -->
 <section class="adhesion" id="adhesion">
   <div class="container adhesion-grid reveal">
@@ -1347,7 +1481,7 @@
   <div class="footer-top">
     <div>
       <div class="footer-brand-name">CRI-CD</div>
-      <div class="footer-slogan">« Bâtissons ensemble un monde meilleur et paisible »</div>
+      <div class="footer-slogan">« Bâtissons ensemble un monde solidaire, meilleur et paisible »</div>
       <div class="socials">
         <a class="soc" href="#">f</a>
         <a class="soc" href="#">in</a>
@@ -1361,7 +1495,7 @@
         <li><a href="#mission">À propos</a></li>
         <li><a href="#domaines">Nos domaines</a></li>
         <li><a href="#actu">Actualités</a></li>
-        <li><a href="#adhesion">Adhésion</a></li>
+        <li><a href="#bureau">Direction</a></li><li><a href="#adhesion">Adhésion</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -1414,7 +1548,7 @@
   function submit() {
     const p = document.getElementById('prenom').value.trim();
     if (!p) { alert('Veuillez indiquer votre prénom.'); return; }
-    alert('Merci ' + p + ' !\n\nVotre demande d\'adhésion a été envoyée avec succès.\nLe Bureau Exécutif du CRI-CD vous contactera prochainement.\n\nBâtissons ensemble un monde meilleur et paisible !');
+    alert('Merci ' + p + ' !\n\nVotre demande d\'adhésion a été envoyée avec succès.\nLe Bureau Exécutif du CRI-CD vous contactera prochainement.\n\nBâtissons ensemble un monde solidaire, meilleur et paisible !');
   }
 </script>
 </body>
